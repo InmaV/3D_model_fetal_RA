@@ -14,15 +14,25 @@ The framework was designed to study how local right-atrial anatomy—particularl
 
 ### Surface geometries
 
+The geometries are simplified computational models and are not patient-specific reconstructions. Meshes are divided in folders: "Total", with meshes representing the complete structure, "RA", with meshes representing the fetal right atrium, and "EV" with meshes representing the Eustachian valve.
+
 | File | Description |
 |---|---|
-| `reference_RA.stl` | Reference right-atrial surface geometry. |
-| `reference_EV.stl` | Eustachian-valve surface for the reference configuration. |
-| `smallerEV_RA.stl` | Right-atrial surface for the smaller-EV configuration. |
-| `smallerEV_EV.stl` | Eustachian-valve surface for the smaller-EV configuration. |
-| `less_elemets_RA.stl` | Reduced-element right-atrial surface used for mesh-sensitivity analyses. The original filename is retained. |
+| `reference_XX.stl` | Reference surface mesh. |
+| `smallerEV_XX.stl` | Surface mesh for the smaller Eustachian valve configuration. |
+| `noEV_XX.stl` | Surface mesh for the configuration without Eustachian valve. |
+| `DV11_XX.stl` | Surface mesh with a ductus venosus inlet diameter of 1.1 mm. |
+| `DV21_XX.stl` | Surface mesh with a ductus venosus inlet diameter of 2.1 mm. |
+| `DV36_XX.stl` | Surface mesh with an angle of 36º between ductus venosus and inferior vena cava. |
+| `DV60_XX.stl` | Surface mesh with an angle of 60º between ductus venosus and inferior vena cava. |
+| `FO31_XX.stl` | Surface mesh with a foramen ovale area of 0.31 mm^2. |
+| `FO71_XX.stl` | Surface mesh with a foramen ovale area of 0.71 mm^2. |
+| `furtherDV_XX.stl` | Surface mesh with the ductus venosus joining the inferior vena cava from a lateral direction. |
+| `IVC10_XX.stl` | Surface mesh with the inferior vena cava oriented toward the foramen ovale with an angle of 10º. |
+| `IVC30_XX.stl` | Surface mesh with the inferior vena cava oriented toward the foramen ovale with an angle of 30º. |
+| `less_elements.stl` | Surface mesh that results in a volumentric mesh with less than 100,000 elements. |
+| `more_elements.stl` | Surface mesh that results in a volumentric mesh with more than 1,000,000 elements. |
 
-The geometries are simplified computational models and are not patient-specific reconstructions.
 
 ### Dynamic-mesh generation
 
