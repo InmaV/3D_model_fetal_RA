@@ -10,17 +10,6 @@ The framework was designed to study how local right-atrial anatomy—particularl
 
 > **Research use only.** This repository is intended for computational research and is not a medical device or a clinical decision-support tool.
 
-## Scientific background
-
-During fetal life, oxygen-rich blood from the placenta enters the right atrium through the DV and IVC. The EV is thought to promote the preferential streaming of this blood toward the FO and, consequently, toward the left heart and brain.
-
-The computational framework enables controlled *in silico* modification of right-atrial anatomy and quantification of:
-
-- Local three-dimensional velocity fields and flow trajectories.
-- Blood mixing within the right atrium.
-- The fraction of DV, IVC, and SVC blood directed toward the FO and TV.
-- The influence of EV morphology and venous-inlet configuration on preferential streaming.
-
 ## Repository contents
 
 ### Surface geometries
