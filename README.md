@@ -1,5 +1,6 @@
 # 3D Computational Model of the Fetal Right Atrium
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21384348.svg)](https://doi.org/10.5281/zenodo.21384348)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Ansys Fluent](https://img.shields.io/badge/Ansys%20Fluent-2025%20R1-orange.svg)](https://www.ansys.com/products/fluids/ansys-fluent)
@@ -195,6 +196,10 @@ The repository therefore provides the principal surface assets, boundary profile
 - Ansys Fluent is proprietary software and is not distributed with this repository.
 
 ## Citation
+
+If you use this model or code, please cite:
+
+> Villanueva-Baxarias, I. (2026). *3D Fetal Right Atrium Model* [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21384348
 
 When using this repository, please cite the associated work:
 
