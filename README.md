@@ -61,17 +61,6 @@ FO
 eustachian_valve
 ```
 
-Typical generated files include:
-
-```text
-test_mesh.vtk
-RA_data_bin.dat
-dynamicmesh_reference.dat
-Meshes/RA_deformed_reference/*.vtk
-Meshes/RA_deformed_reference_stl/*.stl
-```
-
-These generated files are not included in the repository and must be created locally.
 
 ### Transient boundary-condition profiles
 
