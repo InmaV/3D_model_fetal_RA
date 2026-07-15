@@ -146,22 +146,6 @@ SVC
 
 For each venous source and simulation, the FO and TV proportions should sum to approximately 100%.
 
-## Workflow
-
-```mermaid
-flowchart LR
-    A[STL geometries] --> B[Labelled VTK and volume mesh]
-    C[RA_volume.npz] --> D[constructDeformation.ipynb]
-    B --> D
-    D --> E[Deformed surfaces and dynamic-mesh data]
-    F[Transient pressure and flow profiles] --> G[Ansys Fluent setup]
-    E --> G
-    G --> H[Transient CFD simulation]
-    H --> I[EnSight and particle-history outputs]
-    I --> J[Process_particle_tracking.ipynb]
-    J --> K[FO/TV proportions and figures]
-```
-
 ## Software requirements
 
 ### Python
@@ -180,15 +164,6 @@ vtk
 jupyter
 ```
 
-An example Conda environment can be created with:
-
-```bash
-conda create -n fetal-ra -c conda-forge \
-    python=3.9 jupyter numpy scipy matplotlib pandas openpyxl \
-    tqdm pyvista vtk
-
-conda activate fetal-ra
-```
 
 ### CFD software
 
@@ -197,106 +172,18 @@ conda activate fetal-ra
 - A Fluent-compatible volume mesh or case must be prepared separately.
 - The dynamic-mesh UDF source or compiled library must be available and loaded separately.
 
-## Reproducing the simulations
-
-### 1. Prepare the geometry
-
-Create a labelled surface mesh and a Fluent-compatible volume mesh for the desired anatomical configuration.
-
-The boundary-zone names should be checked carefully and should correspond to the regions used in the journals, including:
-
-```text
-dv
-ivc
-svc
-fo
-tv
-ra
-```
-
-Because the journals use GUI-recorded selections and numerical zone positions, the selected zones must be verified manually.
-
-### 2. Generate the atrial deformation
-
-1. Open `constructDeformation.ipynb`.
-2. Update the path to `reference.vtk`.
-3. Update the geometry and output-folder paths.
-4. Run the Laplace–Beltrami deformation cells.
-5. Run the volume-matching procedure.
-6. Export the deformed meshes and dynamic-mesh data.
-
-The notebook contains relative paths such as:
-
-```text
-./Meshes/RA/reference_RA.stl
-./Meshes/RA_deformed_reference/
-./Meshes/RA_deformed_reference_stl/
-```
-
-Create these folders or modify the paths before execution.
-
-### 3. Configure Ansys Fluent
-
-1. Open the prepared mesh or case in Ansys Fluent 2025 R1.
-2. Load the five transient `.prof` files.
-3. Update the transient-table names in `pipeline_no_UDF.jou`.
-4. Replace all absolute paths beginning with `D:/` with valid local paths.
-5. Review the boundary-zone selections and particle-injection surfaces.
-6. Execute `pipeline_no_UDF.jou`.
-7. Compile or load the required dynamic-mesh UDF.
-8. Execute `pipeline_UDF.jou`.
-9. Verify all settings before running the calculation.
-
-### 4. Run the transient simulation
-
-Use the temporal resolution associated with the selected deformation and boundary profiles. For the supplied five-cycle profiles:
-
-```text
-time step = 0.001 s
-cardiac-cycle duration = 0.43 s
-number of cycles = 5
-total simulated time = 2.15 s
-```
-
-Export:
-
-- The transient EnSight case and solution files.
-- Particle-history files for the DV, IVC, and SVC.
-- The flow report file used by the post-processing notebook.
-
-### 5. Process the particle trajectories
-
-1. Open `Process_particle_tracking.ipynb`.
-2. Replace the hard-coded input and output paths.
-3. Check the number of cycles, time steps, and particle streams.
-4. Generate the FO and TV centroid files.
-5. Process the `.mpg*` particle-history files.
-6. Calculate flow-weighted FO and TV proportions.
-7. Export the Excel summaries and plots.
-
-The notebook contains configuration values specific to the original simulations, such as:
-
-```python
-N_PARTICLES = 2151 * 10 * 3
-cycle_len = 430
-n_cycles = 5
-```
-
-Adapt these values when changing the number of time steps, particle streams, or simulated cycles.
 
 ## Files not included
 
 A complete reproduction of the Fluent simulations additionally requires files that are not included in this repository:
 
-- The labelled `reference.vtk` input mesh.
-- The final Fluent volume mesh or case file.
+- The final Fluent volume mesh. 
 - The dynamic-mesh UDF source code or compiled library.
-- Generated dynamic-mesh coordinate files.
-- Fluent flow-report outputs.
 - EnSight case and solution files.
-- Fluent particle-history outputs.
 
-The repository therefore provides the principal surface assets, boundary profiles, setup pipelines, processing methods, and processed results, but not a directly executable complete Fluent case.
+The repository therefore provides the principal surface assets, boundary profiles, setup pipelines, processing methods, and processed results, but not a directly executable complete Fluent case. Details on how to create any additional required file are described in:
+
+> Villanueva Baxarias, M. I. **Advancing the understanding of congenital heart diseases through computational modeling of the fetal cardiovascular system.** PhD thesis, Universitat Pompeu Fabra, 2026.
 
 ## Reproducibility notes
 
