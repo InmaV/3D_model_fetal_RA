@@ -1,0 +1,5 @@
+# Ignore all files and directories starting with .
+.*
+
+# Exception: allow Git to track the .gitignore file itself
+!.gitignore
